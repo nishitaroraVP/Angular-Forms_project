@@ -1,0 +1,24 @@
+.sub-header nav li {
+text-decoration: none;
+list-style: none;
+font-size: 1.3rem;
+margin: 10px 20px;
+display: inline-block;
+
+
+}
+nav>ul{
+    margin-left: 45%;
+    
+}
+.nav-link a{
+    color: white;
+}
+header{
+    background-color:#626868;
+}
+#surveyForm{
+    border: 1px solid #273C2C;
+    
+
+}
