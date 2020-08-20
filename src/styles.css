@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@600&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Lemonada', cursive,Roboto, "Helvetica Neue", sans-serif; }
+body{
+    background: linear-gradient(19deg, rgba(0, 0, 0,0.6),rgba(0,0,0,0.6) ),url('https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-position: center;
+    background-size: cover;
+}

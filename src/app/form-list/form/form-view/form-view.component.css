@@ -1,0 +1,25 @@
+.surveyForm{
+    border: 1px solid black;
+    height:70vh;
+    background-color: cornsilk;
+    width:50%;
+    margin:20px auto;
+    padding: 30px;
+    border-radius: 10%;
+}
+span.help-block{
+    color: red;
+}
+input.ng-invalid.ng-touched{
+    border:2px solid red;
+}
+.spinner{
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+    z-index: 100;
+    width:100vw;
+    
+
+}

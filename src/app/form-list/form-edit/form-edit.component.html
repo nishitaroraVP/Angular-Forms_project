@@ -1,0 +1,116 @@
+<form class="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="onAddInputElement()">
+  <div *ngIf="dynamicInputs.length<1" class="form-group">
+    <label for="formname">Enter From Name</label>
+    <input type="text" class="form-control" placeholder="enter Form Name" formControlName="name">
+    <span class="help-block" *ngIf="!dynamicForm.get('name').valid && dynamicForm.get('name').touched" >Invalid Form name</span>
+  </div>
+ 
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Enter Your Question</label>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="enter your question"
+      formControlName="question"
+    />
+    <span class="help-block" *ngIf="!dynamicForm.get('question').valid && dynamicForm.get('question').touched" >Invalid Form Statement</span>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Response Type</label>
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      formControlName="type"      
+    >
+      <option selected>Select Type of Input</option>
+      <option *ngFor="let type of inputTypes">{{ type }}</option>
+    </select>
+   
+  </div>
+  <div
+    formArrayName="options"
+    *ngIf="this.dynamicForm.get('type').value === 'radio' || this.dynamicForm.get('type').value==='select'"
+  >
+  <a style="cursor: pointer;" (click)="onAddOption()" ><fa-icon [icon]="faPencilRuler" class="fa-2x"></fa-icon></a>
+    <!-- <button  type="button">Add Option</button> -->
+    <div
+      *ngFor="
+        let controls of dynamicForm.get('options')['controls'];
+        let i = index
+      "
+    >
+      <label for="option{{ i }}">Option {{ i + 1 }}</label>
+      <span style="display: flex;">
+        <input type="text" placeholder="enter option" [formControlName]="i"  />
+        <span class="help-block" *ngIf="!dynamicForm.get('name').valid && dynamicForm.get('name').touched" >Invalid Option</span>
+        <a style="cursor: pointer;" (click)="onDeleteOption(i)"><fa-icon [icon]="faTrashAlt" class="fa-1x"></fa-icon></a>
+      </span>
+   
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!dynamicForm.valid">Add</button>
+  <div *ngIf="addingInputElement" class="lds-dual-ring"></div>
+</form>
+
+<form class="surveyForm" #surveyForm="ngForm" (ngSubmit)="onSubmitSurveyForm(surveyForm)">
+  <div *ngFor="let input of dynamicInputs; let i = index">
+    <div *ngIf="input.type === 'paragraph'" class="form-group">
+      <label for="paragraph{{ i }}">{{ input.label }}</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter response"
+        name="question{{ i }}"
+        ngModel
+        required
+        #paragraph="ngModel"
+        disabled
+      />
+    </div>
+    <div class="form-group form-check" *ngIf="input.type === 'date'">
+      <label for="DateQuestion">{{ input.label }}</label>
+
+      
+        <input
+          type="date"
+          class="form-control"
+          id="DateQuestion"
+          ngModel
+          disabled
+        />
+       
+    
+    </div>
+    <div *ngIf="input.type === 'radio'">
+      <label for="radioButtonQuestion">{{ input.label }}</label>
+      <div *ngFor="let option of input.options; let z = index">
+        <div class="radio">
+          <label for="radioButtonOption{{ z }}"
+            ><input
+              type="radio"
+              name="optradio"
+              id="radioButtonOption{{ z }}"
+              disabled
+            />{{ option }}</label
+          >
+        </div>
+      </div>
+    </div>
+    <div *ngIf="input.type === 'select'">
+      <label for="selectInputQuestion">{{ input.label }}</label>
+      <select class="form-control" id="exampleFormControlSelect" name="SelectQuestion" disabled>
+        <option selected>Select Type of Input</option>
+        <option *ngFor="let option of input.options" value="{{option}}">{{
+          option
+        }}</option>
+      </select>
+    </div>
+  </div>
+  <ng-template [ngIf]="dynamicInputs.length>0"
+    ><button type="submit" class="btn btn-primary" >Save</button>
+  </ng-template>
+  
+</form>
+

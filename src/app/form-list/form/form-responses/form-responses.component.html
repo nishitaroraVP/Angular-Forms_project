@@ -1,0 +1,22 @@
+<div class="spinner" *ngIf="!FormFetched">
+  <mat-spinner style="margin: auto; margin-top: 15%;"></mat-spinner>
+</div>
+<div class="list-group">
+  <a
+    (click)="onClickViewResponse(email)"
+    *ngFor="let email of emails"
+    class="list-group-item list-group-item-action list-group-item-success"
+    >{{ email }}</a
+  >
+</div>
+<hr />
+<ng-template [ngIf]="clicked">
+  <div class="card" *ngFor="let question of form.questions; let i = index">
+    <div class="card-header">{{ question.label }}</div>
+    <ng-template ngFor let-response [ngForOf]="question.responses">
+      <div *ngIf="response.email === selectedEmail" class="card-body">
+        {{ response.response }}
+      </div>
+    </ng-template>
+  </div>
+</ng-template>

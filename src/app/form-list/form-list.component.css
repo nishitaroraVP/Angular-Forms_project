@@ -1,0 +1,12 @@
+.card{
+    font-size: 1.3rem;
+    
+}
+.card-body{
+    height: 100px;
+
+}
+.card-column{
+    margin-left: 10px;
+    margin-right:10px ;
+}
